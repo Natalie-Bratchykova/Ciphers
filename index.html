@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bratchykova Ciphers</title>
+    <link rel="stylesheet" href="styles/index-style.css" />
+    <link
+      rel="website icon"
+      href="https://i1.sndcdn.com/avatars-1WABtUTqZzg14zJJ-Na9l0g-t500x500.jpg"
+      type="jpg"
+    />
+    <!-- import cryptographic library -->
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"
+    ></script>
+    <!-- forge js for RSA -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/forge/1.3.1/forge.min.js"
+      integrity="sha512-95iy0RZIbw3H/FgfAj2wnCQJlzFQ+eaSfUeV/l8WVyGHKSRMzm3M/O+85j9ba/HFphkijrCTDjcuDX0BL2lthA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+      defer
+    ></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsencrypt/3.1.0/jsencrypt.min.js"></script>
+  </head>
+  <body>
+    <header class="header">
+      <div class="logo">
+        <div class="logo_content">Nataliia</div>
+        <div class="logo_content">Bratchykova</div>
+      </div>
+      <nav>
+        <div class="button" id="pangrams">Pangrams</div>
+        <select name="" id="cypher_type" class="button">
+          <option value="cipher">Cipher</option>
+          <option value="caesar">Caesar</option>
+          <option value="trithemius">Trithemius</option>
+          <option value="xorEncryption">XorEncryption</option>
+          <option value="bookCipher">Book Cipher</option>
+          <option value="des">DES</option>
+          <option value="tripleDes">TripleDES</option>
+          <option value="aes">AES</option>
+          <option value="knapsack">Knapsack</option>
+          <option value="rsa">RSA</option>
+        </select>
+        <div class="button" id="about_me">
+          About<span class="transparent_text">_</span>me
+          <div class="about-me-info">
+            Nataliia Bratchykova<br />TR-11<br />Very beautiful and talanted
+            creature
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <h1 class="title">Cipher's name</h1>
+      <div class="cypher_place">
+        <div class="cipher_menu">
+          <div class="key_setting">
+            <input type="text" class="key" , id="key" placeholder="input key" /
+            disabled>
+            <!-- des mode choice -->
+            <div class="des-mode-choice _hidden">
+              <div class="mode-group">
+                <input type="radio" name="des-mode" id="ecb" />
+                <label for="ecb">ECB</label>
+              </div>
+              <!-- cbc -->
+              <div class="mode-group">
+                <input type="radio" name="des-mode" id="cbc" />
+                <label for="cbc">CBC</label>
+              </div>
+              <!-- CFB-->
+              <div class="mode-group">
+                <input type="radio" name="des-mode" id="cfb" />
+                <label for="cfb">CFB</label>
+              </div>
+              <!--  OFB -->
+              <div class="mode-group">
+                <input type="radio" name="des-mode" id="ofb" />
+                <label for="ofb">OFB</label>
+              </div>
+              <!-- CTR -->
+              <div class="mode-group">
+                <input type="radio" name="des-mode" id="ctr" />
+                <label for="ctr">CTR</label>
+              </div>
+            </div>
+
+            <!-- knapsack Parametrs -->
+            <section class="knapsac__key">
+              <div class="knapsack__key__group input1">
+                <label for="sequence" class="" id="">Private Key:</label>
+                <input type="text" id="sequence" placeholder="1,3,5,10" />
+              </div>
+              <div class="knapsack__key__group input2">
+                <label for="mode_num" id="module_label">Module num</label>
+                <input type="number" id="mode_num" min="0" placeholder="1" />
+              </div>
+              <div class="knapsack__key__group input3">
+                <label for="n_num" id="n_label">N num</label>
+                <input type="number" id="n_num" min="0" placeholder="1" />
+              </div>
+              <div class="knapsack__key__group publicKey">
+                <label for="knapsackPublicKey" id="pubKeyLabel"
+                  >Public Key</label
+                >
+                <textarea
+                  name="knapsack"
+                  id="knapsackPublicKey"
+                  placeholder="public key"
+                  disabled
+                ></textarea>
+              </div>
+              <div class="knapsack__key__group generateBtn">
+                <button class="button" id="generatePublicKey">
+                  generate Keys
+                </button>
+              </div>
+            </section>
+
+            <!-- set matrix size -->
+            <div class="matrix_setting _hidden">
+              <div class="input_num_group">
+                <label for="row">Rows:</label>
+                <input type="number" name="" id="row" placeholder="0" min="0" />
+              </div>
+              <div class="input_num_group">
+                <label for="columns">Columns:</label>
+                <input
+                  type="number"
+                  name=""
+                  id="columns"
+                  placeholder="0"
+                  min="0"
+                />
+              </div>
+            </div>
+
+            <div class="button _hidden" id="generate_gamma">
+              Generate<span class="transparent_text">_</span>Gamma
+            </div>
+            <div class="key_format _hidden">
+              <div class="option">
+                <input type="radio" id="string" name="option" />
+                <label for="string"
+                  >As<span class="transparent_text">_</span>string</label
+                >
+              </div>
+              <div class="option">
+                <input type="radio" id="numbers" name="option" />
+                <label for="numbers"
+                  >As<span class="transparent_text">_</span>numbers</label
+                >
+              </div>
+            </div>
+
+            <!-- ------------------------------------- -->
+          </div>
+          <div class="buttons">
+            <div class="button" id="encrypt">Encrypt</div>
+            <div class="button" id="decrypt">Decrypt</div>
+            <div class="button" id="saveAsFile">
+              Save<span class="transparent_text">1</span>as<span
+                class="transparent_text"
+                >1</span
+              >file
+            </div>
+          </div>
+        </div>
+        <!-- generated gamma  -->
+        <div class="gamma_container">
+          <textarea
+            name=""
+            class="_hidden"
+            id="generated_gamma"
+            cols="112"
+            rows="1"
+          ></textarea>
+        </div>
+        <!-- input text  place -->
+
+        <div class="input_text">
+          <!-- verse -->
+          <textarea
+            name=""
+            id="verse-key"
+            cols="30"
+            rows="10"
+            class="_hidden"
+            placeholder="input verse"
+          ></textarea>
+          <!-- input text -->
+          <textarea
+            id="input_text"
+            placeholder="input your message"
+            disabled
+          ></textarea>
+
+          <!-- set matrix values -->
+        </div>
+      </div>
+
+      <!-- pop up -->
+      <section class="keys-pairs_section">
+        <p class="cancel cancel_pairs">X</p>
+        <h2 class="keys-pairs__title">Choose your action</h2>
+        <div class="keys-pairs__options">
+          <div class="keys-pairs__option">
+            <input type="radio" name="keyspair" id="automatically" />
+            <label for="automatically">Generate keys pair automatically</label>
+          </div>
+          <div class="keys-pairs__option">
+            <input type="radio" name="keyspair" id="generatePrivateKey" />
+            <label for="generatePrivateKey"
+              >Generate private key with setting</label
+            >
+          </div>
+        </div>
+        <div class="continue-btn">
+          <button class="continue" id="continue">Continue</button>
+        </div>
+      </section>
+
+      <section class="private-key-setting-section">
+        <p class="cancel cancel-private">X</p>
+        <h2 class="keys-pairs__title">Private Key Setting</h2>
+        <div class="key-setting__options">
+          <div class="key-setting__option">
+            <label for="key-length">Key's length:</label>
+            <input type="number" name="key-length" id="key-length" />
+          </div>
+          <div class="key-setting__option">
+            <label for="key-first-elem">Key's first element:</label>
+            <input type="number" name="key-first-elem" id="key-first-elem" />
+          </div>
+        </div>
+        <div class="continue-btn">
+          <button class="continue ok" id="Ok">ok</button>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="scripts/app_script.js"></script>
+  </body>
+</html>

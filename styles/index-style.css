@@ -1,0 +1,312 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+input,
+textarea,
+button,
+textarea:focus,
+button:focus,
+input:focus,
+select,
+select:focus,
+option,
+option:focus {
+  outline: none;
+}
+html {
+  background: #1d1821;
+  color: aliceblue;
+  font-family: "Rubik", sans-serif;
+}
+
+/* root colors */
+
+/* header */
+.header {
+  max-width: 1200px;
+  width: 100%;
+  margin: 1% auto;
+  display: flex;
+  justify-content: space-between;
+}
+header nav {
+  display: flex;
+  width: fit-content;
+  margin-right: 7%;
+}
+
+header nav .button {
+  margin-right: 5%;
+  font-size: 16px;
+  padding: 5% 2%;
+  background: none;
+  color: white;
+  transition: all 0.3s linear;
+  /* centrify */
+}
+.logo_content::first-letter {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+header nav .button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+}
+header nav select {
+  border: none;
+  /* padding: 1%; */
+}
+header nav select option {
+  color: #1d1821;
+}
+.transparent_text {
+  color: transparent;
+}
+.logo {
+  font-size: 20px;
+}
+
+main {
+  max-width: 1200px;
+  width: 100%;
+  margin: auto;
+}
+
+main .title {
+  font-size: 95px;
+  margin: 3% 0;
+}
+
+.cypher_place {
+  background: rgba(255, 255, 255, 0.2);
+}
+.cipher_menu {
+  display: flex;
+  justify-content: space-between;
+  padding: 1%;
+}
+
+.cipher_menu .key {
+  font-size: 18px;
+  padding: 1%;
+}
+
+.cipher_menu .buttons {
+  display: flex;
+  align-items: flex-end;
+  margin-right: 7.5%;
+}
+
+.cipher_menu .buttons .button,
+#generate_gamma {
+  border: 1px solid white;
+  margin-left: 5%;
+  font-size: 18px;
+  padding: 3% 2%;
+  opacity: 0.3;
+  transition: opacity 0.4s linear, border 1s, font-weight 1s;
+}
+.cipher_menu .buttons .button:hover,
+#generate_gamma:hover {
+  opacity: 1;
+  cursor: pointer;
+  font-weight: 700;
+  border: 2px solid white;
+}
+
+.cypher_place .input_text textarea {
+  margin: 1% auto;
+  margin-left: 1%;
+  padding: 1%;
+  font-size: 18px;
+  font-family: "Rubik", sans-serif;
+}
+
+.key_setting {
+  display: flex;
+}
+.key_format {
+  margin-left: 3%;
+}
+.key_format .option {
+  display: flex;
+}
+._hidden {
+  display: none !important;
+}
+
+/* gamma generating area */
+.gamma_container textarea {
+  padding: 1%;
+  font-size: 18px;
+  margin-left: 1%;
+}
+
+/* about me */
+.about-me-info {
+  display: inline-block;
+  position: absolute;
+  line-height: 20px;
+  font-size: 18px;
+  color: #1d1821;
+  text-align: center;
+  right: 2%;
+  top: 6%;
+  padding: 0.4%;
+  max-width: 200px;
+  background: rgba(255, 255, 255, 0.8);
+  opacity: 0;
+  transition: 0.4s linear;
+}
+
+#about_me:hover .about-me-info {
+  opacity: 1;
+}
+
+/* 4 laba */
+.matrix_setting {
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+}
+.input_num_group label {
+  font-size: 18px;
+}
+.input_num_group input {
+  margin-left: 5px;
+  text-align: center;
+  width: 30%;
+  padding: 1%;
+  font-size: 18px;
+}
+
+.double_input {
+  display: flex;
+  justify-items: legacy;
+}
+
+/* des mode setting radio */
+.des-mode-choice,
+.mode-group {
+  display: flex;
+  margin-left: 2%;
+}
+.mode-group {
+  margin-left: 6%;
+}
+.mode-group label {
+  padding-top: 17%;
+}
+
+.unappropriateKey {
+  color: red;
+}
+
+/* text area message */
+textarea {
+  resize: none;
+  width: 1150px;
+  height: 300px;
+}
+
+/* knapsac__key */
+.knapsac__key {
+  display: none;
+  grid-template-areas: "input1 input2 input3" "publicKey generateBtn .";
+}
+
+.input1 {
+  grid-area: input1;
+}
+
+.input2 {
+  grid-area: input2;
+}
+.input3 {
+  grid-area: input3;
+}
+.publicKey {
+  grid-area: publicKey;
+}
+#knapsackPublicKey {
+  width: 250px;
+  max-height: 35px;
+  padding: 1%;
+  text-align: center;
+  font-size: 20px;
+}
+
+.knapsack__key__group {
+  margin-top: 5%;
+  display: flex;
+  flex-direction: column;
+}
+.knapsack__key__group :is(input, textarea) {
+  width: 90%;
+  font-size: 16px;
+  padding: 1%;
+}
+.generateBtn {
+  grid-area: generateBtn;
+  display: flex;
+  align-self: flex-end;
+}
+#generatePublicKey {
+  font-size: 18px;
+  padding: 2% 16%;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.keys-pairs_section,
+.private-key-setting-section {
+  background-color: #1d1821;
+  padding: 1%;
+  display: block;
+  position: absolute;
+  top: 35%;
+  left: 37%;
+  display: none;
+}
+.cancel {
+  text-align: right;
+  cursor: pointer;
+  transition: all 0.2s linear;
+}
+.cancel:hover {
+  color: aquamarine;
+}
+.keys-pairs__title {
+  font-size: 35px;
+  margin: 5% 0;
+}
+.keys-pairs__option label {
+  font-size: 18px;
+}
+.keys-pairs__options {
+  margin-bottom: 5%;
+}
+.continue-btn {
+  display: flex;
+  justify-content: center;
+}
+.continue {
+  margin: 2% auto;
+  font-size: 18px;
+  padding: 1%;
+  cursor: pointer;
+}
+.ok {
+  padding: 1% 6%;
+}
+
+/* .private-key-setting-section{
+  display: block;
+  position: absolute;
+   */
+//}
